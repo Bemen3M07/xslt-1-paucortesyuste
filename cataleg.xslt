@@ -7,7 +7,7 @@
       <body>
         <h2>My CD Collection</h2>
         <table border="1">
-          <tr bgcolor="#9acd32">
+          <tr bgcolor="red">
             <th style="text-align:left">Indicator</th>
             <th style="text-align:left">Title</th>
             <th style="text-align:left">Artist</th>
@@ -18,12 +18,14 @@
             <xsl:sort select="price" data-type="number" order="ascending" />
             <tr>
               <td>
-                <xsl:if test="price &gt; 10">
-                  <p>&#x1F534;</p> <!-- Círculo rojo -->
-                </xsl:if>
-                <xsl:if test="price &lt;= 10">
-                  <p>&#x1F7E2;</p> <!-- Círculo verde -->
-                </xsl:if>
+                <xsl:choose>
+                  <xsl:when test="price &gt; 10">
+                    <p>&#x1F534;</p> 
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <p>&#x1F7E2;</p> 
+                  </xsl:otherwise>
+                </xsl:choose>
               </td>
               <td><xsl:value-of select="title"/></td>
               <td><xsl:value-of select="artist"/></td>
